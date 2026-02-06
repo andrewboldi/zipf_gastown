@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { TextSelector } from './components/TextSelector';
 import { ZipfChart } from './components/ZipfChart';
 import { WordTable } from './components/WordTable';
+import { StatisticsPanel } from './components/StatisticsPanel';
 import { fetchTexts, fetchMultipleZipfData } from './api';
 import { TextInfo, ZipfData } from './types';
 import './App.css';
@@ -13,6 +14,7 @@ function App() {
   const [textsLoading, setTextsLoading] = useState(true);
   const [dataLoading, setDataLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     async function loadTexts() {
@@ -68,12 +70,17 @@ function App() {
       )}
 
       <main className="app-main">
-        <aside className="sidebar">
+        <aside className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
           <TextSelector
             texts={texts}
             selectedIds={selectedTextIds}
             onSelectionChange={handleSelectionChange}
             loading={textsLoading}
+          />
+
+          <StatisticsPanel
+            data={zipfData}
+            loading={dataLoading}
           />
 
           <div className="info-panel">
@@ -94,6 +101,14 @@ function App() {
         </aside>
 
         <section className="content">
+          <button
+            className="mobile-menu-toggle"
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            aria-label="Toggle menu"
+          >
+            {sidebarOpen ? '× Close' : '☰ Menu'}
+          </button>
+
           <ZipfChart
             data={zipfData}
             loading={dataLoading}
