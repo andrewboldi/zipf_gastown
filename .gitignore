@@ -2,3 +2,9 @@
 .claude/
 .logs/
 .beads/
+
+# Dependencies
+node_modules/
+
+# Build output
+frontend/build/
