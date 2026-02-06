@@ -2,3 +2,20 @@
 .claude/
 .logs/
 .beads/
+
+# Data files (downloaded corpus is large)
+data/raw/
+data/processed/
+!data/.gitkeep
+!data/metadata.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+*.egg-info/
+.eggs/
+*.egg
+venv/
+.venv/
