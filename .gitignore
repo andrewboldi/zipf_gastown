@@ -1,3 +1,18 @@
 .runtime/
+.claude/
+.logs/
+.beads/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.venv/
+venv/
+env/
+ENV/
+
+# Agent files
 AGENTS.md
-CLAUDE.md
